@@ -17,8 +17,14 @@ public class App01 implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         //Create
-        Contacts newContacts = new Contacts(0, "Cyrus", null, "cyrus@cyrus-sir.com");
+        Contacts newContacts = new Contacts(0, "Cyrus", "12345678", "cyrus@cyrus-sir.com");
         repo.save(newContacts);
+
+        Contacts newContacts2 = new Contacts(0, "Mandy", "987654321", "mandy@cyrus-sir.com");
+        repo.save(newContacts2);        
+
+        List<Contacts> allContacts2 = repo.findName("Mandy");
+        allContacts2.forEach(System.out::println);
 
         //Retrieve
         List<Contacts> allContacts = repo.findAll();

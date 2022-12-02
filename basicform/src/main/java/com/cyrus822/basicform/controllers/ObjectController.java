@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.cyrus822.basicform.models.MyObjects;
 import com.cyrus822.basicform.repos.MyObjectsRepo;
-
 import jakarta.validation.Valid;
 
 @Controller
@@ -22,7 +21,7 @@ public class ObjectController {
 
     @GetMapping(value = {"", "/", "/index"})
     public String index(ModelMap m){
-        m.addAttribute("allObjects", repo.findAll());
+        m.addAttribute("allCyrus", repo.findAll());
         return "index";
     }
 

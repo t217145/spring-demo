@@ -12,7 +12,7 @@
             <label for="fld1">Field 1</label>
             <input type="text" class="form-control" id="fld1" placeholder="field 1 value" th:field="*{fld1}">
             <span th:if="${#fields.hasErrors('fld1')}" th:errors="*{fld1}" th:errorclass="text-danger">Field 1 Error</span>
-        </div>
+        </div>    
         <button type="submit" class="btn btn-primary">Create</button> &nbsp;&nbsp;&nbsp;
         <a href="#" th:href="@{/index}" class="btn btn-warning">Back</a>
     </form>
