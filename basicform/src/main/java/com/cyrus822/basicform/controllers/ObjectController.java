@@ -4,12 +4,15 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import com.cyrus822.basicform.models.MyObjects;
 import com.cyrus822.basicform.repos.MyObjectsRepo;
+
+import jakarta.validation.Valid;
 
 @Controller
 public class ObjectController {
@@ -30,7 +33,11 @@ public class ObjectController {
     }
 
     @PostMapping("/create")
-    public String create(ModelMap m, @ModelAttribute("newObject") MyObjects _obj){
+    public String create(ModelMap m, @Valid @ModelAttribute("newObject") MyObjects _obj, BindingResult results){
+        if(results.hasErrors()){
+            m.addAttribute("newObject", _obj);
+            return "create";
+        }
         repo.save(_obj);
         return "redirect:/index";
     }
@@ -46,7 +53,7 @@ public class ObjectController {
     }
 
     @PostMapping("/edit")
-    public String edit(ModelMap m, @ModelAttribute("editObject") MyObjects _obj){
+    public String edit(ModelMap m, @ModelAttribute("editObject") MyObjects _obj){  
         repo.save(_obj);
         return "redirect:/index";
     }
