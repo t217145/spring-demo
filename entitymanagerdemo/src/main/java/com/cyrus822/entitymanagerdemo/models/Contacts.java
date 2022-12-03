@@ -19,7 +19,7 @@ import lombok.ToString;
 @ToString
 @Table(name="emContacts")
 @NamedQuery(name = "getAll", query = "select c from Contacts c")
-@NamedQuery(name = "findByName", query = "select c from Contacts c where c.name = :targetName")
+@NamedQuery(name = "findByName", query = "select c from Contacts c where c.name like :myname")
 public class Contacts implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
