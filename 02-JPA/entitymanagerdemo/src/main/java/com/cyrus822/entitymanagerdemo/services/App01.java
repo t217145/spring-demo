@@ -31,7 +31,7 @@ public class App01 implements CommandLineRunner {
 
 
         Query q2 = em.createNamedQuery("findByName");
-        q2.setParameter("targetName", "Cyrus");
+        q2.setParameter("myname", "%Cyrus%");
         Contacts targetContacts = (Contacts)q2.getSingleResult();
         System.out.println(targetContacts.toString());
 
